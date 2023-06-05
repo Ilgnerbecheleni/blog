@@ -1,3 +1,5 @@
+# API para postagens com Nest JS
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -22,11 +24,11 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+API para ser utilizada em uma página de postagens , estilo Blog , porém aonde as pessoas podem somente ler as postagens que os administradores postarem , a princípio não terão as funções de comentários e curtidas , será somente para o front end consumir postagens simples aonde o gerenciamento do site é por um grupo pequeno de administradores .
 
-## Installation
+## Instalação
 
 ```bash
 $ npm install
@@ -44,22 +46,8 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
  
-# "Configurações para instalar em seu BD"
+## "Configurações para instalar em seu BD"
 
 <p>Aqui está o passo a passo para configurar seu banco de dados :</p>
 
