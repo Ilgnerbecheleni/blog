@@ -63,10 +63,9 @@ $ npm run test:cov
 
 <p>Aqui está o passo a passo para configurar seu banco de dados :</p>
 
-# Configure a string de conexão conforme modelo
-
+```bash
 $ DATABASE_URL="postgresql://username:senha@localhost:5432/BlogDB?"
-
+```
 <ul>
 <li> username = nome de acesso ao banco</li>
 <li>senha = senha de acesso ao banco , apos fazer isso renomeie esse arquivo como somente .env
