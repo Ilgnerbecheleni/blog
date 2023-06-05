@@ -13,9 +13,6 @@ export class CreateUserDto {
     password:string;
     @IsString()
     @IsNotEmpty()
-    nickName:string;
-    @IsNumber()
-    @IsNotEmpty()
-    role:number;
+    authname:string;
 
 }

@@ -58,6 +58,21 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+ 
+# "Configurações para instalar em seu BD"
+
+<p>Aqui está o passo a passo para configurar seu banco de dados :</p>
+
+# Configure a string de conexão conforme modelo
+
+$ DATABASE_URL="postgresql://username:senha@localhost:5432/BlogDB?"
+
+<ul>
+<li> username = nome de acesso ao banco</li>
+<li>senha = senha de acesso ao banco , apos fazer isso renomeie esse arquivo como somente .env
+</li>
+</ul>
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
