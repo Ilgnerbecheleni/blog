@@ -15,10 +15,11 @@ constructor (private readonly uploadService:UploadService){}
 @Post()
 async uploadPhoto(@UploadedFile() file:Express.Multer.File){
     const path = join(__dirname,'..','..','storage','photos','img.png') ;
-   
+    
     return this.uploadService.upload(file, path);
-
+    
 }
+
 
 @Get(':filename')
 async getImage(@Param('filename') filename: string, @Res() res: Response) {

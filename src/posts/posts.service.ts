@@ -44,41 +44,54 @@ export class PostsService {
 
   async findAll() {
     try {
-<<<<<<< HEAD
-
-      const user = await this.prisma.post.findMany({
-        include: {
-          author: {
-            select: {
-              name: true, // Selecionando apenas o campo name do autor
-            }
-          } // Incluindo os dados do usuário (author)
-        }
-      });
-=======
-     
+    
       const user = await this.prisma.post.findMany({include: {
         author: { select: {
           authname: true, // Selecionando apenas o campo name do autor
         }} // Incluindo os dados do usuário (author)
       }});
->>>>>>> f01feecf2e6e353f5bd581875d44653db44a2f7e
       return user;
-
     } catch (err) {
       throw new BadRequestException({ status: "Falha ao buscar usuario", message: err.message })
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
+  async findOne(id: number) {
+    try {
+      const post = await this.prisma.post.findFirst({
+        where: { id }
+      });
+      return post;
+
+    } catch (error) {
+      throw new BadRequestException("Falha ao buscar post")
+    }
   }
 
-  update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+ async update(id: number, updatePostDto: UpdatePostDto) {
+    try {
+      const { title, imagem, content, authorId } = updatePostDto;
+      const post = this.findOne(id);
+      if (!post) {
+        throw new BadRequestException("Post não encontrado");
+      }
+      const postUpdated = await this.prisma.post.update({where:{id:id},data:{
+        title,
+        imagem,
+        content,
+        authorId
+      }});
+      return postUpdated;
+    
+
+    } catch (error) {
+      throw new BadRequestException("Falha ao buscar usuarios")
+    }
   }
 
   remove(id: number) {
     return `This action removes a #${id} post`;
   }
+
+  
 }
