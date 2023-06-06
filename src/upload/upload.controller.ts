@@ -4,7 +4,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { join } from 'path';
 import { UploadService } from './upload.service';
 import { Response } from 'express';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('upload')
 @Controller('upload')
 export class UploadController {
 constructor (private readonly uploadService:UploadService){}
