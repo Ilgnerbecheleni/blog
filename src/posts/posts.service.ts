@@ -7,50 +7,53 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class PostsService {
 
-  constructor(private readonly prisma: PrismaService){}
-async verifyUser (id:number){
-  const user = await this.prisma.user.findUnique({
-  where:{
-    id}
-  });
-if(user){
-  return true;
-}
-return false;
-
-}
- async create(createPostDto: CreatePostDto) {
-   try {
-    const {title,imagem,content,authorId}=createPostDto;
-    const verify = await this.verifyUser(authorId);
-    if(!verify){
-      throw new BadRequestException('Usuário não existe');
+  constructor(private readonly prisma: PrismaService) { }
+  async verifyUser(id: number) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id
+      }
+    });
+    if (user) {
+      return true;
     }
-    const post = await this.prisma.post.create({
-      data:{
-        title,
-        imagem,
-        content,
-        authorId
-      }});
-    return post;    
+    return false;
 
-   } catch (err) {
-    throw new BadRequestException({ status: "Falha ao criar post", message: err.message })
-   }
-   
-   
-    return 'This action adds a new post';
+  }
+  async create(createPostDto: CreatePostDto) {
+    try {
+      const { title, imagem, content, authorId } = createPostDto;
+      const verify = await this.verifyUser(authorId);
+      if (!verify) {
+        throw new BadRequestException('Usuário não existe');
+      }
+      const post = await this.prisma.post.create({
+        data: {
+          title,
+          imagem,
+          content,
+          authorId
+        }
+      });
+      return post;
+
+    } catch (err) {
+      throw new BadRequestException({ status: "Falha ao criar post", message: err.message })
+    }
   }
 
   async findAll() {
     try {
-     
-      const user = await this.prisma.post.findMany({include: {
-        author: { select: {
-          name: true, // Selecionando apenas o campo name do autor
-        }} // Incluindo os dados do usuário (author)
-      }});
+
+      const user = await this.prisma.post.findMany({
+        include: {
+          author: {
+            select: {
+              name: true, // Selecionando apenas o campo name do autor
+            }
+          } // Incluindo os dados do usuário (author)
+        }
+      });
       return user;
 
     } catch (err) {
