@@ -68,25 +68,22 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 <p>
   A api Conta com os seguintes endpoints:  
 </p>
-<ul>
-<li>
+
   <p>Para acesso aos endpoints documentados com swagger </p>
-  ```bash
-$ http://localhost:3000/api
-```</li>
-  <li>
-  <p>Para acesso aos usuarios  </p>
-  ```bash
-$ http://localhost:3000/users
-```</li>
-  <li>
+  
+```bash
+ http://localhost:3000/api
+```
+ <p>Para acesso aos usuarios  </p>
+  
+```bash
+ http://localhost:3000/users
+``` 
   <p>Para acesso aos posts </p>
-  ```bash
-$ http://localhost:3000/posts
-```</li>
-<li>senha = senha de acesso ao banco , apos fazer isso renomeie esse arquivo como somente .env
-</li>
-</ul>
+
+```bash
+ http://localhost:3000/posts
+```
 
 ## Stay in touch
 
