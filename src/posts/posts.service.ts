@@ -48,7 +48,7 @@ return false;
      
       const user = await this.prisma.post.findMany({include: {
         author: { select: {
-          name: true, // Selecionando apenas o campo name do autor
+          authname: true, // Selecionando apenas o campo name do autor
         }} // Incluindo os dados do usuário (author)
       }});
       return user;
