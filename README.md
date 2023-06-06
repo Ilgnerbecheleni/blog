@@ -47,7 +47,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
  
-## "Configurações para instalar em seu BD"
+## Configurações para instalar em seu BD
 
 <p>Aqui está o passo a passo para configurar seu banco de dados :</p>
 
@@ -64,9 +64,31 @@ $ DATABASE_URL="postgresql://username:senha@localhost:5432/BlogDB?"
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
+### Endpoints
+<p>
+  A api Conta com os seguintes endpoints:  
+</p>
+
+  <p>Para acesso aos endpoints documentados com swagger </p>
+  
+```bash
+ http://localhost:3000/api
+```
+ <p>Para acesso aos usuarios  </p>
+  
+```bash
+ http://localhost:3000/users
+``` 
+  <p>Para acesso aos posts </p>
+
+```bash
+ http://localhost:3000/posts
+```
+
 ## Stay in touch
 
 - Author - [Ilgner Becheleni](https://www.linkedin.com/in/ilgner-aparecido-becheleni/)
+
 
 
 ## License

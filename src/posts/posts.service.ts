@@ -44,6 +44,7 @@ export class PostsService {
 
   async findAll() {
     try {
+<<<<<<< HEAD
 
       const user = await this.prisma.post.findMany({
         include: {
@@ -54,6 +55,14 @@ export class PostsService {
           } // Incluindo os dados do usuário (author)
         }
       });
+=======
+     
+      const user = await this.prisma.post.findMany({include: {
+        author: { select: {
+          authname: true, // Selecionando apenas o campo name do autor
+        }} // Incluindo os dados do usuário (author)
+      }});
+>>>>>>> f01feecf2e6e353f5bd581875d44653db44a2f7e
       return user;
 
     } catch (err) {
