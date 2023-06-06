@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -6,6 +7,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -21,7 +23,8 @@ export class PostsController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query() skip ,@Query() take ,) {
+    
     return this.postsService.findAll();
   }
 

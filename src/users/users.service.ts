@@ -23,7 +23,7 @@ export class UsersService {
   }
   async create(createUserDto: CreateUserDto) {
     try {
-      const { name, email, password,authname } = createUserDto;
+      const { name, email, password, authname } = createUserDto;
       const verify = await this.EmailVerify(email);
 
       if(verify){
