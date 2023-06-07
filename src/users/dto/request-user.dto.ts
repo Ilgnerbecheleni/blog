@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-export class LoginDTO {
+export interface requestUserDTO {
+    id:number;
+    name:string;
     email:string;
     password:string;
 }

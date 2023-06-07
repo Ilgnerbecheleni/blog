@@ -4,23 +4,34 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt'; 
+import { requestUserDTO } from './dto/request-user.dto';
 @Injectable()
 export class UsersService {
  
 
   constructor(private readonly prisma: PrismaService) { }
-  async findByEmail(email) {
+  
+
+  
+  async findByEmail(email:string):Promise<requestUserDTO> {
     try {
-      const user = await this.prisma.user.findFirst({
-        where: {
-          email: email
-        }
-      });
+      console.log(email)
+      if(!email){
+        throw new BadRequestException("E-mail invalido")
+      }
+      const user:requestUserDTO = await this.prisma.user.findFirst({where:{email:email},select:{
+        id:true,
+        name:true,
+        email:true,
+        password:true
+      }})
      return user ;
     } catch (error) {
       throw new BadRequestException('Not Found');
     }
   }
+
+
   async create(createUserDto: CreateUserDto) {
     try {
       const { name, email, password, authname } = createUserDto;
