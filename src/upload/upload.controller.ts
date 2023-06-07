@@ -18,6 +18,7 @@ async uploadPhoto(@UploadedFile() file:Express.Multer.File){
     
     return this.uploadService.upload(file, path);
     
+
 }
 
 

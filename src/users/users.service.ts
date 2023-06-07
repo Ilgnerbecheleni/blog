@@ -6,25 +6,25 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt'; 
 @Injectable()
 export class UsersService {
+ 
 
   constructor(private readonly prisma: PrismaService) { }
-  async EmailVerify(email) {
-    const emailVerify = await this.prisma.user.findFirst({
-      where: {
-        email: email
-      }
-    });
-    if (emailVerify) {
-      return true;
-    }
-    else {
-      return false;
+  async findByEmail(email) {
+    try {
+      const user = await this.prisma.user.findFirst({
+        where: {
+          email: email
+        }
+      });
+     return user ;
+    } catch (error) {
+      throw new BadRequestException('Not Found');
     }
   }
   async create(createUserDto: CreateUserDto) {
     try {
       const { name, email, password, authname } = createUserDto;
-      const verify = await this.EmailVerify(email);
+      const verify = await this.findByEmail(email);
 
       if(verify){
         throw new BadRequestException('Email already exist');
@@ -89,7 +89,7 @@ export class UsersService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     try {
       const { name, email, password,authname } = updateUserDto;
-      const verify = await this.EmailVerify(email);
+      const verify = await this.findByEmail(email);
 
       if(verify){
         throw new BadRequestException('Email already exist');
