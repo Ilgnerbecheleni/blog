@@ -13,8 +13,6 @@ export class CreatePostDto {
     @IsNotEmpty()
     imagem:string;
  
-    @IsNumber()
-    @IsNotEmpty()
-    authorId:number;
+ 
     
 }

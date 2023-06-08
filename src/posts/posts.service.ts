@@ -20,10 +20,10 @@ export class PostsService {
     return false;
 
   }
-  async create(createPostDto: CreatePostDto) {
+  async create(createPostDto: CreatePostDto, id:number) {
     try {
-      const { title, imagem, content, authorId } = createPostDto;
-      const verify = await this.verifyUser(authorId);
+      const { title, imagem, content} = createPostDto;
+      const verify = await this.verifyUser(id);
       if (!verify) {
         throw new BadRequestException('Usuário não existe');
       }
@@ -32,7 +32,7 @@ export class PostsService {
           title,
           imagem,
           content,
-          authorId
+          authorId:id
         }
       });
       return post;
@@ -68,9 +68,9 @@ export class PostsService {
     }
   }
 
- async update(id: number, updatePostDto: UpdatePostDto) {
+ async update(id: number, updatePostDto: UpdatePostDto, authorId:number) {
     try {
-      const { title, imagem, content, authorId } = updatePostDto;
+      const { title, imagem, content } = updatePostDto;
       const post = this.findOne(id);
       if (!post) {
         throw new BadRequestException("Post não encontrado");

@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDTO } from './dto/login.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from './Guards/Auth.guard';
 
 @ApiTags("auth")
 @Controller('auth')
@@ -14,6 +15,12 @@ export class AuthController {
   login(@Body() login: LoginDTO) {
     
     return this.authService.login(login);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('profile')
+  getProfile(@Request() req) {
+    return req.user;
   }
 
 }

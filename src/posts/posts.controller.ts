@@ -8,20 +8,29 @@ import {
   Param,
   Delete,
   Query,
+  UseGuards,
+  Request,
+  Put,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/Guards/Auth.guard';
 
 @ApiTags('posts')
+@UseGuards(AuthGuard)
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
+
   @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postsService.create(createPostDto);
+  create(@Body() createPostDto: CreatePostDto , @Request() req) {
+   
+    const id = req.user.id;
+
+    return this.postsService.create(createPostDto, id);
   }
 
   @Get()
@@ -35,9 +44,10 @@ export class PostsController {
     return this.postsService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postsService.update(+id, updatePostDto);
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updatePostDto: UpdatePostDto, @Request() req) {
+    const authorId = req.user.id;
+    return this.postsService.update(id, updatePostDto,authorId);
   }
 
   @Delete(':id')
