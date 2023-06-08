@@ -23,4 +23,10 @@ export class AuthController {
     return req.user;
   }
 
+  @Post('reset')
+  reset(@Body() body){
+    const { email }= body;
+    return this.authService.reset(email);
+  }
+
 }

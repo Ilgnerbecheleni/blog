@@ -105,12 +105,31 @@ export class UsersService {
       if(verify){
         throw new BadRequestException('Email already exist');
       }
-      const user = await this.prisma.user.update({ where: { id: id }, data: { name, email, password,authname } });
+
+      const salt = await bcrypt.genSalt();
+      const hash = await bcrypt.hash(password, salt);
+
+      const user = await this.prisma.user.update({ where: { id: id }, data: { name, email, password:hash,authname } });
       return user;
 
     } catch (error) {
       throw new BadRequestException("Falha ao buscar usuarios")
     }
+  }
+
+  async updatePassword(id:number, password:string){
+    try {
+      const salt = await bcrypt.genSalt();
+      const hash = await bcrypt.hash(password, salt);
+
+
+      const user = await this.prisma.user.update({ where: { id: id
+        }, data: { password:hash } });
+        return user;
+        } catch (error) {
+          throw new BadRequestException();
+        } 
+
   }
 
   remove(id: number) {
