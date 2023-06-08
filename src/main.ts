@@ -10,9 +10,9 @@ async function bootstrap() {
   app.useGlobalInterceptors();
 
   const config = new DocumentBuilder()
-  .setTitle('Documentação com Swagger - Fábrica de Sinapse')
+  .setTitle('Documentação Api Blog')
   .setDescription(
-    'O Swagger (aka OpenApi) é uma biblioteca muito conhecida no universo backend, estando disponível para diversas linguagens e frameworks. Ela gera um site interno no seu backend que descreve, com muitos detalhes, cada endpoint e estrutura de entidades presentes na sua aplicação.',
+    'O Swagger ira lhe auxiliar nos testes de cada endpoint da API.Esta API é para sites com funcionalidade de blog aonde apenas adms podem postar postagens',
   )
   .setVersion('1.0')
   .addTag('home')
